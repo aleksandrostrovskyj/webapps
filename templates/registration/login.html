@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load myfilters %}
+
+{% block content %}
+<div class="text-center">
+    <form class="form-signin" action="{% url 'login' %}" method="post">
+        {% csrf_token %}
+        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+        <label for="inputEmail" class="sr-only">Login</label>
+        {{form.username|addclass:'form-control'}}
+        <label for="inputPassword" class="sr-only">Password</label>
+        {{form.password|addclass:'form-control'}}
+        <button class="btn btn-lg btn-primary btn-block" type="submit" value="login">Sign in</button>
+    </form>
+</div>
+
+{% endblock %}

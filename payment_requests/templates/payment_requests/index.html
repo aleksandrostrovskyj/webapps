@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load myfilters %}
+
+{% block content %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <h1 class="h2">Payment Requests</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+          <div class="btn-group mr-2">
+            <button type="button" class="btn btn-sm btn-outline-secondary" onclick="window.location.href = '{% url 'payment_requests:pr_create_url' %}';">New request</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary" onclick="window.location.href = '{% url 'payment_requests:pr_upload_url' %}';">Import</button>
+          </div>
+          <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+
+          </button>
+        </div>
+      </div>
+    <div class="table-responsive-lg">
+        <table class="table table-striped table-sm table-hover">
+            <thead>
+                <tr>
+                    {% for field in columns %}
+                        <th scope="col">{{ field }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+
+                {% for pr_data, p_request in table_data %}
+                    <tr class="table-row" onclick="document.location = '{{p_request.get_absolute_url}}';">
+                        {% for val in pr_data %}
+                            <td>
+                                {{ val }}
+                            </td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    {% if is_paginated %}
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+            {% else %}
+                <li class="page-item disabled">
+                  <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                </li>
+            {% endif %}
+            {% for i in paginator.page_range %}
+                {% if page_obj.number == i %}
+                    <li class="page-item active" aria-current="page">
+                      <a class="page-link" href="#">{{ i }}<span class="sr-only">(current)</span></a>
+                    </li>
+                {% else %}
+                    <li class="page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %}
+            {% endfor %}
+            {% if page_obj.has_next %}
+                <li class="page-item">
+                  <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+                </li>
+            {% else %}
+                <li class="page-item disabled">
+                  <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Next</a>
+                </li>
+            {% endif %}
+        </ul>
+      </nav>
+    {% endif %}
+{% endblock %}
