@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load myfilters %}
+
+
+
+{% block content %}
+
+{% for field in form %}
+    {% if field.errors %}
+        <div class="alert alert-danger" role="alert">
+           {{field.errors}}
+         </div>
+    {% endif %}
+{% endfor %}
+
+<form class="payment_request" action="{{payment_request.get_update_url}}" method="post">
+    {% csrf_token %}
+      <div class="form-row">
+          <div class="form-group col-md-3">
+                <label for="{{ form.department.id_for_label }}">Department</label>
+                {{form.department|addclass:'form-control'}}
+          </div>
+          <div class="form-group col-md-3">
+                <label for="{{ form.subdivision.id_for_label }}">Subdivision</label>
+                 {{form.subdivision|addclass:'form-control'}}
+          </div>
+          <div class="form-group col-md-3">
+                <label for="{{ form.user.id_for_label }}">User</label>
+                 {{form.user|addclass:'form-control'}}
+          </div>
+          <div class="form-group col-md-3">
+                <label for="{{ form.request_date.id_for_label }}">Request Date</label>
+                <input class="form-control" id="request_date" value="{{payment_request.request_date}}" disabled>
+          </div>
+      </div>
+      <div class="form-row">
+          <div class="form-group col-md-6">
+                <label for="{{ form.payment_details.id_for_label }}">Payment Details</label>
+                {{form.payment_details|addclass:'form-control'}}
+          </div>
+          <div class="form-group col-md-6">
+                <label for="{{ form.form_w8ben_w9.id_for_label }}">Form w8ben/w9</label>
+                {{form.form_w8ben_w9|addclass:'form-control'}}
+          </div>
+      </div>
+      <div class="form-row">
+          <div class="form-group col-md-2">
+              <label for="{{ form.payment_metod.id_for_label }}">Payment Method</label>
+              {{form.payment_metod|addclass:'form-control'}}
+          </div>
+          <div class="form-group col-md-2">
+              <label for="{{ form.payment_system.id_for_label }}">Payment System</label>
+              {{form.payment_system|addclass:'form-control'}}
+          </div>
+          <div class="form-group col-md-2">
+                <label for="{{ form.recipient.id_for_label }}">Recipient</label>
+                {{form.recipient|addclass:'form-control'}}
+          </div>
+          <div class="form-group col-md-2">
+                <label for="{{ form.requisits.id_for_label }}">Requisits</label>
+                {{form.requisits|addclass:'form-control'}}
+          </div>
+          <div class="form-group col-md-1">
+                <label for="{{ form.amount.id_for_label }}">Amount</label>
+                {{form.amount|addclass:'form-control'}}
+          </div>
+          <div class="form-group col-md-1">
+              <label for="{{ form.currency.id_for_label }}">Currency</label>
+              {{form.currency|addclass:'form-control'}}
+          </div>
+          <div class="form-group col-md-2">
+
+              <label for="{{ form.planned_payment_date.id_for_label }}">Planned Payment Date</label>
+              {{form.planned_payment_date|addclass:'form-control'}}
+         </div>
+      </div>
+      <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="{{ form.compositions_of_payment_negotiations.id_for_label }}">Compositions of payment negotiations</label>
+                {{form.compositions_of_payment_negotiations|addclass:'form-control'}}
+            </div>
+            <div class="form-group col-md-4">
+                <label for="{{ form.ceo.id_for_label }}">CEO</label>
+                {{form.ceo|addclass:'form-control'}}
+            </div>
+            <div class="form-group col-md-4">
+                <label for="{{ form.fact_payment_date.id_for_label }}">Fact Payment Date</label>
+                {{form.fact_payment_date|addclass:'form-control'}}
+            </div>
+      </div>
+  <button type="submit" class="btn btn-primary">Save</button>
+</form>
+{% endblock %}
