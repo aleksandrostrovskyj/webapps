@@ -12,6 +12,7 @@ body {
  */
 
 .sidebar {
+  margin-top: 50px;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -109,7 +110,7 @@ nav.col-md-2.d-none.d-md-block.bg-light.sidebar {}
 }
 
 .table-row{
-cursor:pointer;
+  cursor:pointer;
 }
 
 

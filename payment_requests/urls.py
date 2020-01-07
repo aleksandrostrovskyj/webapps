@@ -8,5 +8,5 @@ urlpatterns = [
     path('<int:pk>', PaymentRequestDetail.as_view(), name='pr_detail_url'),
     path('new/', PaymentRequestCreate.as_view(), name='pr_create_url'),
     path('<int:pk>/edit', PaymentRequestEdit.as_view(), name='pr_edit_url'),
-    path('upload/', PaymentRequestUpload.as_view(), name='pr_upload_url')
+    path('upload/', PaymentRequestList.as_view(), name='pr_upload_url')
 ]
