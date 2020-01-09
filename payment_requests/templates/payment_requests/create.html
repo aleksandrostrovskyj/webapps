@@ -3,17 +3,7 @@
 
 {% block content %}
 
-{% if not serializer.is_valid %}
-    {% for field, field_errors in serializer.errors.items %}
-        {% for error in field_errors %}
-            <div class="alert alert-danger" role="alert">
-               {{field}} - {{error}}
-             </div>
-         {% endfor %}
-    {% endfor %}
-{%endif%}
-
-  <form action="{% url 'payment_requests:pr_create_url' %}" method="post">
+  <form action="{% url 'payment_requests:pr_create_url' %}" method="POST">
       {% csrf_token %}
       {% render_form serializer %}
     <button type="submit" class="btn btn-primary">Save</button>

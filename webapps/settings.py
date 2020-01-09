@@ -109,7 +109,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LOGIN_REDIRECT_URL = '/internal_tools/payment_requests/'
+LOGIN_REDIRECT_URL = '/internal_tools/payment_requests/list'
 LOGOUT_REDIRECT_URL = '/accounts/login'
 
 # Internationalization

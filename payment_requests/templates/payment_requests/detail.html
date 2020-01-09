@@ -2,12 +2,12 @@
 {% load rest_framework %}
 
 {% block content %}
-    <form>
-        <fieldset disabled>
+    <form action="{% url 'payment_requests:pr_detail_url' pk=serializer.id.value %}" method="POST">
+        <fieldset>
             {% csrf_token %}
             {% render_form serializer %}
         </fieldset>
-    <button type="button" class="btn btn-primary" onclick="window.location.href = '{% url 'payment_requests:pr_edit_url' pk=serializer.id.value %}';">Edit</button>
+    <button type="submit" class="btn btn-primary" value="Save">Save</button>
   </form>
 
 {% endblock %}

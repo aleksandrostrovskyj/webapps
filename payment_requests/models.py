@@ -44,12 +44,3 @@ class PaymentRequest(models.Model):
 
     class Meta:
         ordering = ['id']
-
-    def get_absolute_url(self):
-        return reverse('payment_requests:pr_detail_url', kwargs={'pk': self.id})
-
-    def get_edit_url(self):
-        return reverse('payment_requests:pr_edit_url', kwargs = {'pk': self.id})
-    #
-    # def get_create_url(self):
-    #     return reverse('payment_requests:pr_create_url')
